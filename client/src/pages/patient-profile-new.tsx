@@ -59,7 +59,22 @@ interface Medication {
 export default function PatientProfileNew() {
   // Estado para controlar la visibilidad del sidebar en móvil
   const [sidebarOpen, setSidebarOpen] = useState(false);
-  const isMobile = useIsMobile();
+  const [isMobile, setIsMobile] = useState(false);
+  
+  // Detector de dispositivo móvil
+  useEffect(() => {
+    const checkIfMobile = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+    
+    // Verificar al cargar y cuando cambie el tamaño de la ventana
+    checkIfMobile();
+    window.addEventListener('resize', checkIfMobile);
+    
+    return () => {
+      window.removeEventListener('resize', checkIfMobile);
+    };
+  }, []);
   
   // Estados de diálogos
   const [showEditProfileDialog, setShowEditProfileDialog] = useState(false);
@@ -162,9 +177,33 @@ export default function PatientProfileNew() {
     });
   };
   return (
-    <div className="flex min-h-screen">
-      {/* Barra lateral */}
-      <div className="w-[220px] bg-[--blue-light] border-r py-4 px-2">
+    <div className="relative flex flex-col md:flex-row min-h-screen">
+      {/* Botón de menú móvil */}
+      {isMobile && (
+        <button 
+          className="fixed top-4 left-4 z-50 p-2 bg-[--blue-main] rounded-md text-white shadow-md"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+        >
+          <svg 
+            className="h-6 w-6" 
+            xmlns="http://www.w3.org/2000/svg" 
+            fill="none" 
+            viewBox="0 0 24 24" 
+            stroke="currentColor"
+          >
+            {sidebarOpen ? (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+            ) : (
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+            )}
+          </svg>
+        </button>
+      )}
+    
+      {/* Barra lateral - Cambia en móvil vs desktop */}
+      <div className={`${isMobile ? 'fixed z-40 inset-y-0 left-0 transform transition-transform duration-300 ease-in-out' : 'w-[220px]'} 
+        ${isMobile && !sidebarOpen ? '-translate-x-full' : 'translate-x-0'} 
+        bg-[--blue-light] border-r py-4 px-2 md:relative md:block`}>
         <div className="mb-8 px-4">
           <div className="flex items-center gap-2">
             <div className="w-7 h-7 bg-[--blue-main] rounded-md flex items-center justify-center">
@@ -230,13 +269,21 @@ export default function PatientProfileNew() {
         </nav>
       </div>
 
+      {/* Overlay para cerrar el sidebar en móvil cuando está abierto */}
+      {isMobile && sidebarOpen && (
+        <div 
+          className="fixed inset-0 z-30 bg-black bg-opacity-50"
+          onClick={() => setSidebarOpen(false)}
+        ></div>
+      )}
+
       {/* Contenido principal */}
-      <div className="flex-1 p-6 bg-[--gray-light]">
+      <div className="flex-1 p-4 md:p-6 bg-[--gray-light]">
         <div className="max-w-5xl mx-auto">
           <header className="mb-6">
             <div className="flex justify-between items-center mb-4">
-              <h1 className="text-2xl font-bold text-[--blue-main]">CronApp</h1>
-              <div className="flex items-center space-x-4">
+              <h1 className={`${isMobile ? 'text-xl ml-8' : 'text-2xl'} font-bold text-[--blue-main]`}>CronApp</h1>
+              <div className="flex items-center space-x-2 md:space-x-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="focus:outline-none">
                     <div className="flex items-center cursor-pointer hover:bg-[--blue-light]/20 p-2 rounded-lg transition-colors">
@@ -351,7 +398,7 @@ export default function PatientProfileNew() {
           {/* Datos del paciente */}
           <div className="mb-8">
             <h2 className="text-lg font-medium text-[--blue-main] mb-4">Datos del paciente</h2>
-            <div className="grid md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               <Card className="shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300">
                 <CardContent className="p-5">
                   <div className="flex items-center">
@@ -564,7 +611,7 @@ export default function PatientProfileNew() {
           <div className="mb-8">
             <h2 className="text-lg font-medium text-[--blue-main] mb-4">Metas y Tendencias</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
               {/* Gráfico de tendencia de glucosa */}
               <Card className="shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300">
                 <CardContent className="p-5">
@@ -711,7 +758,7 @@ export default function PatientProfileNew() {
           <div className="mb-8">
             <h2 className="text-lg font-medium text-[--blue-main] mb-4">Medicación Activa</h2>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
               <Card className="shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300">
                 <CardContent className="p-5">
                   <h3 className="text-sm font-medium text-[--blue-main] mb-4">Medicamentos para Diabetes</h3>
