@@ -282,7 +282,7 @@ export default function PatientProfileNew() {
         <div className="max-w-5xl mx-auto">
           <header className="mb-6">
             <div className="flex justify-between items-center mb-4">
-              <h1 className={`${isMobile ? 'text-xl ml-8' : 'text-2xl'} font-bold text-[--blue-main]`}>CronApp</h1>
+              {/* Título eliminado */}
               <div className="flex items-center space-x-2 md:space-x-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="focus:outline-none">
