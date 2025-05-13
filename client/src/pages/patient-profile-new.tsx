@@ -275,30 +275,33 @@ export default function PatientProfileNew() {
       <div className="flex-1 p-4 md:p-6 bg-[--gray-light]">
         <div className="max-w-5xl mx-auto">
           <header className="mb-6">
-            <div className="flex justify-between items-center mb-4">
+            <div className="flex items-center mb-4">
               {/* Área izquierda para el botón de hamburguesa en móvil */}
-              {isMobile && showMenuButton && (
-                <button 
-                  className="p-2 bg-[--blue-main] rounded-md text-white shadow-md transition-opacity duration-300"
-                  onClick={() => setSidebarOpen(!sidebarOpen)}
-                >
-                  <svg 
-                    className="h-6 w-6" 
-                    xmlns="http://www.w3.org/2000/svg" 
-                    fill="none" 
-                    viewBox="0 0 24 24" 
-                    stroke="currentColor"
+              <div className="flex-1 flex justify-start">
+                {isMobile && showMenuButton && (
+                  <button 
+                    className="p-2 bg-[--blue-main] rounded-md text-white shadow-md transition-opacity duration-300"
+                    onClick={() => setSidebarOpen(!sidebarOpen)}
                   >
-                    {sidebarOpen ? (
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    ) : (
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-                    )}
-                  </svg>
-                </button>
-              )}
-              {/* Área derecha para notificaciones y perfil */}
-              <div className="flex items-center space-x-2 md:space-x-4">
+                    <svg 
+                      className="h-6 w-6" 
+                      xmlns="http://www.w3.org/2000/svg" 
+                      fill="none" 
+                      viewBox="0 0 24 24" 
+                      stroke="currentColor"
+                    >
+                      {sidebarOpen ? (
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                      ) : (
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                      )}
+                    </svg>
+                  </button>
+                )}
+              </div>
+              
+              {/* Área derecha para notificaciones y perfil - siempre alineada a la derecha */}
+              <div className="flex justify-end items-center space-x-2 md:space-x-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="focus:outline-none">
                     <div className="flex items-center cursor-pointer hover:bg-[--blue-light]/20 p-2 rounded-lg transition-colors">
