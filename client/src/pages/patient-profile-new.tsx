@@ -193,27 +193,6 @@ export default function PatientProfileNew() {
   };
   return (
     <div className="relative flex flex-col md:flex-row min-h-screen">
-      {/* Botón de menú móvil - se oculta al hacer scroll hacia abajo */}
-      {isMobile && showMenuButton && (
-        <button 
-          className="fixed top-4 left-4 z-50 p-2 bg-[--blue-main] rounded-md text-white shadow-md transition-opacity duration-300"
-          onClick={() => setSidebarOpen(!sidebarOpen)}
-        >
-          <svg 
-            className="h-6 w-6" 
-            xmlns="http://www.w3.org/2000/svg" 
-            fill="none" 
-            viewBox="0 0 24 24" 
-            stroke="currentColor"
-          >
-            {sidebarOpen ? (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-            ) : (
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
-            )}
-          </svg>
-        </button>
-      )}
     
       {/* Barra lateral - Cambia en móvil vs desktop */}
       <div className={`${isMobile ? 'fixed z-40 inset-y-0 left-0 transform transition-transform duration-300 ease-in-out' : 'w-[220px]'} 
@@ -292,12 +271,33 @@ export default function PatientProfileNew() {
         ></div>
       )}
 
-      {/* Contenido principal - con padding adicional en mobile para el botón hamburguesa */}
+      {/* Contenido principal */}
       <div className="flex-1 p-4 md:p-6 bg-[--gray-light]">
-        <div className={`max-w-5xl mx-auto ${isMobile ? 'pt-8' : ''}`}>
+        <div className="max-w-5xl mx-auto">
           <header className="mb-6">
-            <div className="flex justify-end items-center mb-4">
-              {/* Área del header ahora con justify-end para mover todo a la derecha */}
+            <div className="flex justify-between items-center mb-4">
+              {/* Área izquierda para el botón de hamburguesa en móvil */}
+              {isMobile && showMenuButton && (
+                <button 
+                  className="p-2 bg-[--blue-main] rounded-md text-white shadow-md transition-opacity duration-300"
+                  onClick={() => setSidebarOpen(!sidebarOpen)}
+                >
+                  <svg 
+                    className="h-6 w-6" 
+                    xmlns="http://www.w3.org/2000/svg" 
+                    fill="none" 
+                    viewBox="0 0 24 24" 
+                    stroke="currentColor"
+                  >
+                    {sidebarOpen ? (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    ) : (
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 6h16M4 12h16M4 18h16" />
+                    )}
+                  </svg>
+                </button>
+              )}
+              {/* Área derecha para notificaciones y perfil */}
               <div className="flex items-center space-x-2 md:space-x-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="focus:outline-none">
