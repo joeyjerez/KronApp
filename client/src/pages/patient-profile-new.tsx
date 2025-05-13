@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Separator } from "@/components/ui/separator";
@@ -57,6 +57,10 @@ interface Medication {
 }
 
 export default function PatientProfileNew() {
+  // Estado para controlar la visibilidad del sidebar en móvil
+  const [sidebarOpen, setSidebarOpen] = useState(false);
+  const isMobile = useIsMobile();
+  
   // Estados de diálogos
   const [showEditProfileDialog, setShowEditProfileDialog] = useState(false);
   const [showConfirmLogoutDialog, setShowConfirmLogoutDialog] = useState(false);
