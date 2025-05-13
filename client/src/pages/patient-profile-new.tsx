@@ -60,21 +60,36 @@ export default function PatientProfileNew() {
   // Estado para controlar la visibilidad del sidebar en móvil
   const [sidebarOpen, setSidebarOpen] = useState(false);
   const [isMobile, setIsMobile] = useState(false);
+  // Estado para controlar la visibilidad del botón hamburguesa al hacer scroll
+  const [showMenuButton, setShowMenuButton] = useState(true);
   
-  // Detector de dispositivo móvil
+  // Detector de dispositivo móvil y control de scroll para el botón hamburguesa
   useEffect(() => {
     const checkIfMobile = () => {
       setIsMobile(window.innerWidth < 768);
     };
     
+    // Control de scroll para ocultar/mostrar el botón hamburguesa
+    const handleScroll = () => {
+      // Si el usuario ha scrolleado más de 100px, ocultamos el botón
+      // O si el sidebar está abierto, mantenemos el botón visible
+      if (sidebarOpen) {
+        setShowMenuButton(true);
+      } else {
+        setShowMenuButton(window.scrollY < 100);
+      }
+    };
+    
     // Verificar al cargar y cuando cambie el tamaño de la ventana
     checkIfMobile();
     window.addEventListener('resize', checkIfMobile);
+    window.addEventListener('scroll', handleScroll);
     
     return () => {
       window.removeEventListener('resize', checkIfMobile);
+      window.removeEventListener('scroll', handleScroll);
     };
-  }, []);
+  }, [sidebarOpen]);
   
   // Estados de diálogos
   const [showEditProfileDialog, setShowEditProfileDialog] = useState(false);
@@ -178,10 +193,10 @@ export default function PatientProfileNew() {
   };
   return (
     <div className="relative flex flex-col md:flex-row min-h-screen">
-      {/* Botón de menú móvil */}
-      {isMobile && (
+      {/* Botón de menú móvil - se oculta al hacer scroll hacia abajo */}
+      {isMobile && showMenuButton && (
         <button 
-          className="fixed top-4 left-4 z-50 p-2 bg-[--blue-main] rounded-md text-white shadow-md"
+          className="fixed top-4 left-4 z-50 p-2 bg-[--blue-main] rounded-md text-white shadow-md transition-opacity duration-300"
           onClick={() => setSidebarOpen(!sidebarOpen)}
         >
           <svg 
@@ -277,9 +292,9 @@ export default function PatientProfileNew() {
         ></div>
       )}
 
-      {/* Contenido principal */}
+      {/* Contenido principal - con padding adicional en mobile para el botón hamburguesa */}
       <div className="flex-1 p-4 md:p-6 bg-[--gray-light]">
-        <div className="max-w-5xl mx-auto">
+        <div className={`max-w-5xl mx-auto ${isMobile ? 'pt-8' : ''}`}>
           <header className="mb-6">
             <div className="flex justify-end items-center mb-4">
               {/* Área del header ahora con justify-end para mover todo a la derecha */}
