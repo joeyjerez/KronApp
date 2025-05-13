@@ -1,0 +1,174 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --background: 0 0% 100%;
+  --foreground: 210 11% 15%; /* Negro Suave - #212529 */
+  --muted: 210 17% 98%; /* Gris Claro - #F8F9FA */
+  --muted-foreground: 215 14% 46%; /* Gris Medio - #6C757D */
+  
+  --popover: 0 0% 100%;
+  --popover-foreground: 210 11% 15%;
+  
+  --card: 0 0% 100%;
+  --card-foreground: 210 11% 15%;
+  
+  --border: 214 32% 91%;
+  --input: 214 32% 91%;
+  
+  /* Azul Principal - #007BFF */
+  --primary: 211 100% 50%;
+  --primary-foreground: 0 0% 100%;
+  
+  /* Azul Claro - #E6F0FF */
+  --secondary: 213 100% 95%;
+  --secondary-foreground: 211 100% 50%;
+  
+  /* Cian / Verde Agua Claro - #17A2B8 */
+  --accent: 189 77% 41%;
+  --accent-foreground: 0 0% 100%;
+  
+  /* Rojo - #DC3545 */
+  --destructive: 354 70% 54%;
+  --destructive-foreground: 0 0% 100%;
+  
+  --ring: 211 100% 50%;
+  --radius: 0.5rem;
+
+  /* Chart colors */
+  --chart-1: 354 70% 54%; /* Rojo - #DC3545 */
+  --chart-2: 211 100% 50%; /* Azul Principal - #007BFF */
+  --chart-3: 141 70% 41%; /* Verde - #28A745 */
+  --chart-4: 43 100% 65%; /* Amarillo - #FFC107 */
+  --chart-5: 189 77% 41%; /* Cian - #17A2B8 */
+  
+  /* Colores personalizados para la aplicación médica */
+  --blue-main: #007BFF;
+  --blue-light: #E6F0FF;
+  --gray-light: #F8F9FA;
+  --gray-medium: #6C757D;
+  --black-soft: #212529;
+  --red-alert: #DC3545;
+  --yellow-warning: #FFC107;
+  --orange: #FFA500;
+  --green-success: #28A745;
+  --cyan-info: #17A2B8;
+}
+
+.dark {
+  --background: 222 47% 11%;
+  --foreground: 213 31% 91%;
+  
+  --muted: 223 47% 11%;
+  --muted-foreground: 215 20.2% 65.1%;
+  
+  --popover: 222 47% 11%;
+  --popover-foreground: 213 31% 91%;
+  
+  --card: 222 47% 11%;
+  --card-foreground: 213 31% 91%;
+  
+  --border: 216 34% 17%;
+  --input: 216 34% 17%;
+  
+  /* Healthcare primary red (darker) */
+  --primary: 354 75% 51%;
+  --primary-foreground: 210 40% 98%;
+  
+  /* Healthcare secondary blue (darker) */
+  --secondary: 214 57% 16%;
+  --secondary-foreground: 210 40% 98%;
+  
+  /* Healthcare accent blue (darker) */
+  --accent: 206 52% 40%;
+  --accent-foreground: 0 0% 100%;
+  
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  
+  --ring: 216 34% 17%;
+  --radius: 0.5rem;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+}
+
+/* Healthcare app specific styles */
+.healthcare-logo {
+  background-color: hsl(var(--primary));
+  color: white;
+  border-radius: 1.25rem;
+  padding: 0.75rem;
+  box-shadow: 0 6px 8px -2px rgba(0, 0, 0, 0.25), 0 3px 5px -1px rgba(0, 0, 0, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.healthcare-card {
+  background-color: hsl(var(--card));
+  border-radius: 0.75rem;
+  border: 1px solid rgba(0, 0, 0, 0.1);
+  box-shadow: 0 8px 16px -2px rgba(0, 0, 0, 0.15), 0 4px 8px -1px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  transition-property: all;
+  transition-duration: 0.3s;
+}
+
+/* Estilo personalizado para el título CronApp */
+.cronapp-title {
+  font-size: 2.5rem;
+  font-weight: 800;
+  background: linear-gradient(135deg, hsl(var(--primary)) 0%, hsl(var(--accent)) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  letter-spacing: -0.025em;
+  text-transform: uppercase;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+  position: relative;
+  display: inline-block;
+}
+
+/* Estilos para las barras de progreso */
+.risk-progress-bar {
+  height: 8px;
+  border-radius: 9999px;
+  overflow: hidden;
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.risk-progress-bar-indicator {
+  height: 100%;
+  border-radius: 9999px;
+  transition: width 0.3s ease;
+}
+
+.risk-progress-bar-indicator.high {
+  background-color: var(--red-alert);
+}
+
+.risk-progress-bar-indicator.medium {
+  background-color: var(--orange);
+}
+
+.risk-progress-bar-indicator.low {
+  background-color: var(--green-success);
+}
+
+.cronapp-title::after {
+  content: '';
+  position: absolute;
+  bottom: -4px;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, hsl(var(--primary)), transparent);
+}

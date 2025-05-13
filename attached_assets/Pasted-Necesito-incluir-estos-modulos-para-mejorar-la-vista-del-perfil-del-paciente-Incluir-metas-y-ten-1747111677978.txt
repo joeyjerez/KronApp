@@ -1,0 +1,69 @@
+Necesito incluir estos modulos para mejorar la vista del perfil del paciente:
+
+Incluir metas y tendencias:
+
+Mostrar gráficos de tendencia pequeños para valores clave
+Visualizar el progreso hacia metas de salud personalizadas
+Indicar si los valores están mejorando o empeorando con flechas de tendencia
+
+Sección de medicación activa:
+
+Lista de medicamentos para diabetes e hipertensión
+Horarios de toma y recordatorios pendientes
+Adherencia al tratamiento (% de cumplimiento)
+
+Panel de factores de riesgo:
+
+Mostrar un scorecard con factores de riesgo cardiovascular
+Incluir recomendaciones personalizadas basadas en los valores actuales
+
+Calendario de próximas citas y eventos:
+
+Citas médicas programadas
+Fechas para análisis de laboratorio
+Recordatorios para actualización de prescripciones
+
+Sección de educación y recursos:
+
+Artículos relevantes sobre manejo de diabetes e hipertensión
+Consejos nutricionales específicos para su condición
+Videos educativos personalizados según su perfil
+
+Dashboard de actividad física:
+
+Seguimiento de actividad diaria/semanal
+Recomendaciones de ejercicio adaptadas a su condición
+
+Integración de datos dietéticos:
+
+Registro de comidas y su impacto en niveles de glucosa
+Sugerencias de planes de alimentación para pacientes con diabetes e hipertensión
+
+Estoy usando la siguiente paleta de colores para la vista:
+
+Azul Principal – #007BFF
+Usado en botones principales, encabezados y resaltes de acción.
+
+Azul Claro – #E6F0FF
+Fondo de secciones informativas y para destacar íconos relacionados con salud visual o funciones cardíacas.
+
+Gris Claro – #F8F9FA
+Fondo general del panel, para mantener la neutralidad visual.
+
+Gris Medio – #6C757D
+Para texto secundario y descripciones.
+
+Negro Suave – #212529
+Texto principal (nombre del paciente, títulos, etc.).
+
+Rojo – #DC3545
+Indicadores de riesgo, presión arterial alta, y alertas.
+
+Amarillo / Naranja – #FFC107 o #FFA500
+Indicador de riesgo moderado-alto, por ejemplo: riesgo del 78%.
+
+Verde – #28A745
+Indicador de sistemas activos, funciones estables (por ejemplo, "Sistema Óptimo").
+
+Cian / Verde Agua Claro – #17A2B8
+Elementos informativos suaves, como guías clínicas.
