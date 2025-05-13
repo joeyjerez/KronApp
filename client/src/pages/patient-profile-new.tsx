@@ -1077,14 +1077,14 @@ export default function PatientProfileNew() {
             <h2 className="text-lg font-medium text-[--blue-main] mb-4">Educación y Recursos</h2>
             
             <Tabs defaultValue="articulos" className="w-full">
-              <TabsList className="w-full grid grid-cols-3 mb-4">
-                <TabsTrigger value="articulos" className="text-[--blue-main]">Artículos</TabsTrigger>
-                <TabsTrigger value="videos" className="text-[--blue-main]">Videos</TabsTrigger>
-                <TabsTrigger value="nutricion" className="text-[--blue-main]">Nutrición</TabsTrigger>
+              <TabsList className="w-full grid grid-cols-3 mb-4 text-xs sm:text-sm">
+                <TabsTrigger value="articulos" className="text-[--blue-main] px-1 md:px-3">Artículos</TabsTrigger>
+                <TabsTrigger value="videos" className="text-[--blue-main] px-1 md:px-3">Videos</TabsTrigger>
+                <TabsTrigger value="nutricion" className="text-[--blue-main] px-1 md:px-3">Nutrición</TabsTrigger>
               </TabsList>
               
               <TabsContent value="articulos">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                   <Card className="shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300">
                     <CardContent className="p-0">
                       <div className="w-full h-40 bg-[--blue-light] rounded-t-lg flex items-center justify-center">
@@ -1151,7 +1151,7 @@ export default function PatientProfileNew() {
               </TabsContent>
               
               <TabsContent value="videos">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 md:gap-6">
                   <Card className="shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300">
                     <CardContent className="p-0">
                       <div className="w-full aspect-video bg-[--blue-light] rounded-t-lg flex items-center justify-center relative">
@@ -1212,7 +1212,7 @@ export default function PatientProfileNew() {
               </TabsContent>
               
               <TabsContent value="nutricion">
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-6">
                   <Card className="shadow-sm border border-gray-200 hover:shadow-md transition-shadow duration-300">
                     <CardContent className="p-0">
                       <div className="w-full h-40 bg-[--green-success]/10 rounded-t-lg flex items-center justify-center">
@@ -1617,7 +1617,7 @@ export default function PatientProfileNew() {
 
         {/* Diálogo para editar perfil */}
         <Dialog open={showEditProfileDialog} onOpenChange={setShowEditProfileDialog}>
-          <DialogContent className="sm:max-w-[500px] border border-[--blue-light] shadow-lg">
+          <DialogContent className="max-w-[90vw] sm:max-w-[500px] border border-[--blue-light] shadow-lg overflow-y-auto max-h-[90vh]">
             <DialogHeader>
               <DialogTitle className="text-[--blue-main] text-xl">Editar Perfil</DialogTitle>
               <DialogDescription className="text-[--gray-medium]">
