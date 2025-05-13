@@ -281,8 +281,8 @@ export default function PatientProfileNew() {
       <div className="flex-1 p-4 md:p-6 bg-[--gray-light]">
         <div className="max-w-5xl mx-auto">
           <header className="mb-6">
-            <div className="flex justify-between items-center mb-4">
-              {/* Título eliminado */}
+            <div className="flex justify-end items-center mb-4">
+              {/* Área del header ahora con justify-end para mover todo a la derecha */}
               <div className="flex items-center space-x-2 md:space-x-4">
                 <DropdownMenu>
                   <DropdownMenuTrigger className="focus:outline-none">
